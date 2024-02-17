@@ -90,6 +90,10 @@ const Products = () => {
       slug,
       sold,
       __v,
+      regularPrice,
+      createdAt,
+      updatedAt,
+      featured,
       ...newObj
     } = item;
     dispatch(addToCart(newObj));
