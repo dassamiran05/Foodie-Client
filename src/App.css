@@ -1,0 +1,154 @@
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
+
+form label {
+  font-size: 1rem;
+  font-weight: bold;
+  display: block;
+  text-align: left;
+  margin: 1rem 0 0.2rem;
+}
+
+input.input-error,
+select.input-error,
+textarea.input-error {
+  border: 1px solid red !important;
+}
+
+.preImagebtnClose {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  font-size: 20px;
+  color: #f3274c;
+  background: #fff;
+  border-radius: 50%;
+  /* width: 20px;
+    height: 20px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.active > .page-link,
+.active > .page-link:hover {
+  color: #fff !important;
+}
+
+.pagination.pagination1 {
+  display: flex;
+  margin-top: 0;
+  border: none;
+  width: -moz-fit-content;
+  width: fit-content;
+  position: relative;
+  margin-left: 0;
+  border-radius: 0;
+  padding: 0;
+}
+
+.pagination.pagination1 li {
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+.pagination.pagination1 li a {
+  padding: 6px 14px;
+  line-height: 26px;
+}
+
+.pages span {
+  font-size: 16px;
+  margin-right: 8px;
+  margin-top: 10px;
+}
+
+.pages .num {
+  background: #c4cee3;
+  width: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.profile-icon {
+  height: 40px;
+}
+
+.profile-icon svg {
+  color: #fff;
+  font-size: 20px;
+}
+
+.profileLabel input[type="file"] {
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.profileLabel {
+  display: inline-block;
+  position: relative;
+  height: 100%;
+  width: 40px;
+  cursor: pointer;
+  margin-top: 0;
+}
+
+.adminbtn {
+  /* position: relative; */
+  cursor: pointer;
+}
+
+.shipping {
+  padding: 14px;
+  border: 3px solid #ffd40d;
+  outline: none;
+  width: 100px;
+  border-radius: 11px;
+}
+
+.expire td {
+  color: #f3274c !important;
+}

@@ -1,0 +1,21 @@
+button.dash_close {
+  /* float: right; */
+  background: #f3274c;
+  border-radius: 40px;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  font-size: 25px;
+  margin-top: -16px;
+  margin-right: -15px;
+  margin-right: -15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  border: none;
+  position: absolute;
+  right: 5%;
+  top: 4%;
+  transform: translateX(-50%);
+}
