@@ -137,7 +137,7 @@ const authSlice = createSlice({
       .addCase(changePassword.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
-        // toast.error(payload);
+        toast.error(payload);
       })
       .addCase(handleSendEmail.pending, (state) => {
         state.loading = true;
