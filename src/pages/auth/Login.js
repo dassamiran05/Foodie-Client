@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../redux/features/auth/authActions";
 import Loader from "../../components/loader/Loader";
+import usePathname from "../../utils/usePathname";
+import Banner from "../../components/pageBanner/Banner";
 
 const Login = () => {
-  const { loading, message, success, userToken, userInfo } = useSelector(
+  const { userToken, userInfo } = useSelector(
     (state) => state.auth
   );
   // console.log(loading, message, success);
@@ -15,6 +17,12 @@ const Login = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
+
+  const pathname = usePathname();
+  const pathArr = pathname
+    .split("/")
+    .filter((path) => path !== "")
+    .map((path) => path.charAt(0).toUpperCase() + path.slice(1).toLowerCase());
 
   useEffect(() => {
     if (userToken) {
@@ -50,8 +58,8 @@ const Login = () => {
   });
   return (
     <>
-      {loading && <Loader />}
-      <section
+      <Loader />
+      {/* <section
         className="banner"
         style={{
           backgroundImage: `url(${require("../../assets/img/background.png")})`,
@@ -102,7 +110,8 @@ const Login = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+      <Banner paths={pathArr} />
       <section className="gap">
         <div className="container">
           <div className="row d-flex justify-content-center">

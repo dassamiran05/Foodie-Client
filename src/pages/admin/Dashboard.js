@@ -181,7 +181,7 @@ const Dashboard = () => {
 
                     <table className="table table-borderless datatable">
                       {loading && <GetdataLoader />}
-                      {!loading && modifiedOrders.length > 0 && (
+                      {!loading && orders.length > 0 && (
                         <>
                           <thead>
                             <tr>
@@ -193,21 +193,23 @@ const Dashboard = () => {
                             </tr>
                           </thead>
                           <tbody>
-                            {modifiedOrders.map((order, index) => {
-                              const { customer, product, status } = order;
+                            {orders.map((order, index) => {
+                              {
+                                /* const { customer, product, status } = order; */
+                              }
                               return (
                                 <>
                                   <tr key={index + 1}>
                                     <th scope="row">{index + 1}</th>
-                                    <td>{customer}</td>
+                                    <td>{order.user.name}</td>
                                     <td>
-                                      {product
+                                      {order.products
                                         ?.map((item) => item?.name)
                                         .join(", ")}
                                     </td>
                                     <td>
                                       $
-                                      {product?.reduce(
+                                      {order.products?.reduce(
                                         (acc, curr) =>
                                           acc + curr?.price * curr?.quantity,
                                         0
@@ -216,10 +218,14 @@ const Dashboard = () => {
                                     <td>
                                       <span
                                         className={`badge bg-${
-                                          status ? "success" : "warning"
+                                          order.payment.status
+                                            ? "success"
+                                            : "warning"
                                         }`}
                                       >
-                                        {status ? "Approved" : "Pending"}
+                                        {order.payment.status
+                                          ? "Approved"
+                                          : "Pending"}
                                       </span>
                                     </td>
                                   </tr>
@@ -229,7 +235,7 @@ const Dashboard = () => {
                           </tbody>
                         </>
                       )}
-                      {!loading && modifiedOrders.length === 0 && (
+                      {!loading && orders.length === 0 && (
                         <p className="mt-2">There is no data to show</p>
                       )}
                     </table>
