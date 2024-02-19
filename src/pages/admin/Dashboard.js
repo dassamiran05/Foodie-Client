@@ -208,7 +208,8 @@ const Dashboard = () => {
                                       $
                                       {order.products?.reduce(
                                         (acc, curr) =>
-                                          acc + curr?.price * curr?.cartQuantity,
+                                          acc +
+                                          curr?.price * curr?.cartQuantity,
                                         0
                                       )}
                                     </td>
