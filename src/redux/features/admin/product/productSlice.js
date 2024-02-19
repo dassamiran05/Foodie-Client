@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import {
   getAllFeaturedProducts,
   getAllproducts,
+  getAllproductsByCategory,
   handleCreateProduct,
   handleDeleteProduct,
   handleSingleProduct,
@@ -71,6 +72,22 @@ const productSlice = createSlice({
         state.products.length > 0 && toast.success(payload?.message);
       })
       .addCase(getAllproducts.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+        state.success = false;
+      })
+      .addCase(getAllproductsByCategory.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getAllproductsByCategory.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.success = true;
+        state.products = payload?.products;
+        state.message = payload?.message;
+        toast.success(payload?.message);
+      })
+      .addCase(getAllproductsByCategory.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
         state.success = false;
@@ -172,4 +189,3 @@ const productSlice = createSlice({
 export const { resetSingleproductState, handleSinglephotourl } =
   productSlice.actions;
 export default productSlice.reducer;
-

@@ -15,6 +15,8 @@ import { Pagination, Navigation, EffectFade, Autoplay } from "swiper/modules";
 import { FaStar } from "react-icons/fa";
 import ReactPlayer from "react-player/youtube";
 import { Link } from "react-router-dom";
+// import { useDispatch } from "react-redux";
+// import { getAllproductsByCategory } from "../../redux/features/admin/product/productActions";
 
 const banContent = [
   {
@@ -33,6 +35,7 @@ const banContent = [
     desc: "limited time offer",
     image: img2,
     btnurl: "/",
+    category: "Burger",
   },
   {
     id: 3,
@@ -41,14 +44,16 @@ const banContent = [
     desc: "don't miss this deal",
     image: img3,
     btnurl: "/",
+    category: "Pizza",
   },
   {
     id: 4,
     mediumTitle: "Summer Drink",
-    largeTitle: "Cocktail",
+    largeTitle: "Ice cream",
     desc: "limited time offer",
     image: img4,
     btnurl: "/",
+    category: "Ice cream",
   },
 ];
 
@@ -78,6 +83,10 @@ const VideoPopup = ({ show, setShow }) => {
 
 const Herobanner = () => {
   const [show, setShow] = useState(false);
+
+
+
+  
   return (
     <>
       <section className="slider-hero">
@@ -117,10 +126,17 @@ const Herobanner = () => {
                                 <h6>{item.desc}</h6>
                               )}
                               <div className="d-md-flex align-items-center">
-                                <Link to={item.btnurl} className="button">
-                                  {item.video
+                                <Link
+                                  to={
+                                    item?.video && item?.btnurl
+                                      ? item?.btnurl
+                                      : `/products/${item?.category}`
+                                  }
+                                  className="button"
+                                >
+                                  {item?.video && item?.btnurl
                                     ? "See Our Menus"
-                                    : "get offer today"}
+                                    : "Order now"}
                                 </Link>
                                 {item.video && (
                                   <div

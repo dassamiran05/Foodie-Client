@@ -13,6 +13,8 @@ const initialState = {
   success: false,
   message: "",
   total: null,
+  numberPage: null,
+  count:null
 };
 
 const orderSlice = createSlice({
@@ -44,14 +46,17 @@ const orderSlice = createSlice({
         state.loading = false;
         state.success = true;
         state.orders = payload?.orders;
+        // state.numberPage = payload.pagecount;
+        state.numberPage = payload.pagination.pageCount;
+        state.count = payload.pagination.count;
         state.message = payload?.message;
-        toast.success(payload?.message);
+        // toast.success(payload?.message);
       })
       .addCase(getOrders.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
         state.success = false;
-        toast.error(payload);
+        // toast.error(payload);
       })
       .addCase(getOrdersByOptions.pending, (state) => {
         state.loading = true;

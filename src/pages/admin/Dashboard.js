@@ -194,9 +194,6 @@ const Dashboard = () => {
                           </thead>
                           <tbody>
                             {orders.map((order, index) => {
-                              {
-                                /* const { customer, product, status } = order; */
-                              }
                               return (
                                 <>
                                   <tr key={index + 1}>
@@ -211,7 +208,7 @@ const Dashboard = () => {
                                       $
                                       {order.products?.reduce(
                                         (acc, curr) =>
-                                          acc + curr?.price * curr?.quantity,
+                                          acc + curr?.price * curr?.cartQuantity,
                                         0
                                       )}
                                     </td>

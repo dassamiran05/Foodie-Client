@@ -3,7 +3,7 @@ import axiosInstance from "../../../../utils/axios";
 
 export const getOrders = createAsyncThunk(
   "orders/get",
-  async ({ token }, { rejectWithValue }) => {
+  async ({ token, options }, { rejectWithValue }) => {
     try {
       const config = {
         headers: {
@@ -11,7 +11,16 @@ export const getOrders = createAsyncThunk(
           Authorization: token,
         },
       };
-      const url = `/api/v1/order/allorders`;
+
+      const queryStr = Object.entries(options).reduce(
+        (queryString, [key, value], index) => {
+          queryString += `${index === 0 ? "" : "&"}${key}=${value}`;
+          return queryString;
+        },
+        ""
+      );
+      
+      const url = `/api/v1/order/allorders?${queryStr}`;
       const { data } = await axiosInstance.get(url, config);
       return data;
     } catch (error) {
@@ -66,6 +75,7 @@ export const getOrderStatusUpdate = createAsyncThunk(
           Authorization: token,
         },
       };
+
       const { data } = await axiosInstance.put(
         `/api/v1/order/statusupdate/${id}`,
         { value },

@@ -44,6 +44,7 @@ import Allcoupon from "./pages/admin/Allcoupon";
 import Cancel from "./pages/payment/Cancel";
 import Succss from "./pages/payment/Succss";
 import AllOrders from "./pages/admin/AllOrders";
+import CategoryProducts from "./pages/categoryProduct/CategoryProducts";
 
 function App() {
   const router = createBrowserRouter([
@@ -75,6 +76,7 @@ function App() {
         { path: "/register", element: <Register /> },
         { path: "/payment/success", element: <Succss /> },
         { path: "/payment/cancel", element: <Cancel /> },
+        { path: "/products/:category", element: <CategoryProducts /> },
         {
           path: "*",
           element: <Notfound />,
