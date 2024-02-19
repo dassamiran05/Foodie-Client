@@ -55,6 +55,18 @@ const mobileNavigation = [
     path: "/contact",
     children: [],
   },
+  // {
+  //   id: 7,
+  //   parent: "Login",
+  //   path: "/login",
+  //   children: [],
+  // },
+  // {
+  //   id: 8,
+  //   parent: "Register",
+  //   path: "/register",
+  //   children: [],
+  // },
 ];
 
 const Header = () => {
@@ -387,12 +399,31 @@ const Header = () => {
               </>
             );
           })}
+          {userToken ? (
+            <>
+              {userInfo.role === 1 && (
+                <li onClick={() => setClick(false)}>
+                  <Link to={"/dashboard/home"}>Dashboard</Link>
+                </li>
+              )}
+              <li onClick={() => setClick(false)}>
+                <Link to={"/"} onClick={handleLogout}>
+                  Logout
+                </Link>
+              </li>
+            </>
+          ) : (
+            <>
+              <li onClick={() => setClick(false)}>
+                <Link to="/login">Login</Link>
+              </li>
+              <li onClick={() => setClick(false)}>
+                <Link to="/register">Register</Link>
+              </li>
+            </>
+          )}
         </ul>
-        <Link
-          to="#"
-          id="res-cross"
-          onClick={() => setClick(false)}
-        />
+        <Link to="#" id="res-cross" onClick={() => setClick(false)} />
       </div>
     </header>
   );
