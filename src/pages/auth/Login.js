@@ -9,10 +9,7 @@ import usePathname from "../../utils/usePathname";
 import Banner from "../../components/pageBanner/Banner";
 
 const Login = () => {
-  const { userToken, userInfo } = useSelector(
-    (state) => state.auth
-  );
-  // console.log(loading, message, success);
+  const { userToken, userInfo } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -26,9 +23,14 @@ const Login = () => {
 
   useEffect(() => {
     if (userToken) {
-      return userInfo?.role === 1 ? navigate("/dashboard/home") : navigate("/");
+      return location.state?.from?.pathname
+        ? navigate(location.state.from.pathname)
+        : userInfo?.role === 1
+        ? navigate("/dashboard/home")
+        : navigate("/");
     }
-  }, [navigate, userToken, userInfo?.role]);
+
+  }, [navigate, userToken, userInfo?.role, location.state?.from?.pathname]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -51,7 +53,6 @@ const Login = () => {
       email: Yup.string().required("Required").email("Invalid email"),
     }),
     onSubmit: (values) => {
-      console.log(values);
       dispatch(loginUser(values));
       formik.handleReset();
     },
@@ -59,58 +60,6 @@ const Login = () => {
   return (
     <>
       <Loader />
-      {/* <section
-        className="banner"
-        style={{
-          backgroundImage: `url(${require("../../assets/img/background.png")})`,
-        }}
-      >
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-lg-7">
-              <div className="title-area-data">
-                <h2>Login</h2>
-                <p>A magical combination that sent aromas to the taste buds</p>
-              </div>
-              <ol className="breadcrumb">
-                <li className="breadcrumb-item">
-                  <Link href="/">
-                    <i className="fa-solid fa-house" /> Home
-                  </Link>
-                </li>
-                <li className="breadcrumb-item active" aria-current="page">
-                  login
-                </li>
-              </ol>
-            </div>
-            <div className="col-lg-5">
-              <div className="row">
-                <div className="col-6">
-                  <div className="title-area-img">
-                    <img
-                      alt="title-area-img"
-                      src={require("../../assets/img/title-area-img-1.jpg")}
-                    />
-                    <img
-                      alt="pata"
-                      className="pata"
-                      src={require("../../assets/img/pata.png")}
-                    />
-                  </div>
-                </div>
-                <div className="col-6">
-                  <div className="title-area-img two">
-                    <img
-                      alt="title-area-img"
-                      src={require("../../assets/img/title-area-img-2.jpg")}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> */}
       <Banner paths={pathArr} />
       <section className="gap">
         <div className="container">

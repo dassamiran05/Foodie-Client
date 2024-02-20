@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../pages/admin/shared/Header";
 import Footer from "../pages/admin/shared/Footer";
 import Sidebar from "../pages/admin/shared/Sidebar";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 // import "../assets/admin/vendor/quill/quill.snow.css";
 // import "../assets/admin/vendor/quill/quill.bubble.css";
@@ -28,7 +28,6 @@ const DashboardLayout = () => {
     url: `/${path}`,
     name: path.charAt(0).toUpperCase() + path.slice(1).toLowerCase(),
   }));
-  console.log(breadcrumbPaths);
 
   return (
     <>
