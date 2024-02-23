@@ -24,7 +24,6 @@ const Allproducts = () => {
   const dispatch = useDispatch();
 
   const pageNumbers = [...Array(numberPage + 1).keys()].slice(1);
-  console.log(pageNumbers);
 
   // useEffect(() => {
   //   const newProductsarr = products.map((product) => {
@@ -36,14 +35,12 @@ const Allproducts = () => {
   //   setAllProducts(newProductsarr);
   // }, [products]);
 
-  // const getCategoryByname = (id) => {
-  //   const categoryName = category.find((item) => item._id === id)?.name;
-  //   return categoryName;
-  // };
-
   useEffect(() => {
-    dispatch(getAllproducts({ page, limit }));
-    // dispatch(getCategories());
+    const timer = setTimeout(() => {
+      dispatch(getAllproducts({ page, limit }));
+    }, 500);
+
+    return () => clearTimeout(timer);
   }, [dispatch, page, limit]);
 
   useEffect(() => {

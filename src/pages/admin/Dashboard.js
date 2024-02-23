@@ -93,9 +93,13 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (Object.values(filterOptions).length > 0) {
-      dispatch(
-        getOrdersByOptions({ token: userToken, filterOptions: filterOptions })
-      );
+      const timer = setTimeout(() => {
+        dispatch(
+          getOrdersByOptions({ token: userToken, filterOptions: filterOptions })
+        );
+      }, 800);
+
+      return () => clearTimeout(timer);
     }
   }, [dispatch, userToken, filterOptions]);
 

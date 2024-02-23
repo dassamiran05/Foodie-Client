@@ -67,8 +67,13 @@ const ProductDetail = () => {
       __v,
       ...newOne
     } = product;
-    dispatch(addToCart(newOne));
-    dispatch(calculateTotalprice());
+
+    const timer = setTimeout(() => {
+      dispatch(addToCart(newOne));
+      dispatch(calculateTotalprice());
+    }, 500);
+
+    return () => clearTimeout(timer);
   };
 
   const handleClick = (index) => {

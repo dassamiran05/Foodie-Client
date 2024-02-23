@@ -24,12 +24,11 @@ const AllOrders = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5);
   const [filterOptions, setFilterOptions] = useState({
-    limit,
-    page: 1,
+    limit: limit,
+    page: page,
     search: "",
   });
 
-  // const pageNo = Math.ceil(count / limit);
 
   useEffect(() => {
     const options = {
@@ -41,16 +40,15 @@ const AllOrders = () => {
     setFilterOptions(options);
   }, [page, searchInput]);
 
-  useEffect(() => {
-    if (searchInput) {
-      setPage(1);
-    }
-  }, [searchInput, page]);
 
   const pageNumbers = [...Array(numberPage + 1).keys()].slice(1);
 
   useEffect(() => {
-    dispatch(getOrders({ token: userToken, options: filterOptions }));
+    const timer = setTimeout(() => {
+      dispatch(getOrders({ token: userToken, options: filterOptions }));
+    }, 800);
+
+    return () => clearTimeout(timer);
   }, [dispatch, userToken, filterOptions]);
 
   const handleOrderStatusChange = (orderId, value) => {
@@ -79,6 +77,7 @@ const AllOrders = () => {
                   searchInput={searchInput}
                   setSearchInput={setSearchInput}
                   handlesearch={handleSearch}
+                  setPage={setPage}
                 />
               </div>
             </div>
